@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation CSV pour Impression</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Visualisation CSV pour Impression</h1>
+        
+        <div class="control-panel">
+            <div class="control-group">
+                <label for="paddingValue">Padding de la page:</label>
+                <div class="input-group">
+                    <input type="number" id="paddingValue" value="1" min="0" max="5" step="0.1">
+                    <select id="paddingUnit">
+                        <option value="cm">cm</option>
+                        <option value="px">px</option>
+                        <option value="mm">mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="cellWidth">Largeur des cellules:</label>
+                <div class="input-group">
+                    <input type="number" id="cellWidth" value="3" min="1" max="10" step="0.1">
+                    <select id="cellWidthUnit">
+                        <option value="cm">cm</option>
+                        <option value="px">px</option>
+                        <option value="mm">mm</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label for="cellHeight">Hauteur des cellules:</label>
+                <div class="input-group">
+                    <input type="number" id="cellHeight" value="1" min="0" max="5" step="0.1">
+                    <select id="cellHeightUnit">
+                        <option value="cm">cm</option>
+                        <option value="px">px</option>
+                        <option value="mm">mm</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label for="fontSize">Taille de police:</label>
+                <div class="input-group">
+                    <input type="number" id="fontSize" value="7" min="6" max="20" step="1">
+                    <select id="fontSizeUnit">
+                        <option value="pt">pt</option>
+                        <option value="px">px</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label for="tablePosition">Position de la table:</label>
+                <select id="tablePosition">
+                    <option value="center">Centrée</option>
+                    <option value="left">Gauche</option>
+                    <option value="right">Droite</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="marginX">Marge horizontale:</label>
+                <div class="input-group">
+                    <input type="number" id="marginX" value="0" min="-5" max="5" step="0.1">
+                    <select id="marginXUnit">
+                        <option value="cm">cm</option>
+                        <option value="px">px</option>
+                        <option value="mm">mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="marginY">Marge verticale:</label>
+                <div class="input-group">
+                    <input type="number" id="marginY" value="0" min="-5" max="5" step="0.1">
+                    <select id="marginYUnit">
+                        <option value="cm">cm</option>
+                        <option value="px">px</option>
+                        <option value="mm">mm</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label for="textAlign">Alignement du texte:</label>
+                <select id="textAlign">
+                    <option value="center">Centré</option>
+                    <option value="left">Gauche</option>
+                    <option value="right">Droite</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="upload-section" id="dropZone">
+            <label for="fileInput" class="btn upload-btn">Sélectionner un fichier</label>
+            <input type="file" id="fileInput" class="file-input" accept=".csv,.xls,.xlsx,.txt">
+            <p>ou glissez-déposez un fichier ici</p>
+            <p>Formats supportés: CSV, XLS, XLSX, TXT</p>
+        </div>
+
+        <div class="print-btn-container">
+            <button id="printButton" class="btn print-btn">Imprimer</button>
+        </div>
+        
+        <div class="preview-section">
+            <div class="preview-controls">
+                <h3>Prévisualisation</h3>
+                <p>Ajustez les paramètres pour personnaliser l'affichage.</p>
+                <div class="control-group" style="margin-top: 20px;">
+                    <label for="zoomLevel">Zoom:</label>
+                    <input type="range" id="zoomLevel" min="50" max="150" value="100" step="10">
+                    <div style="text-align: center;"><span id="zoomValue">100%</span></div>
+                </div>
+                <button id="applySettings" class="btn apply-btn">Appliquer les modifications</button>
+            </div>
+            
+            <div id="pagesContainer" class="pages-container print-view"></div>
+        </div>
+    </div>
+
+    <script src="script.js">jsc</script>
+</body>
+</html>
